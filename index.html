@@ -1,133 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jernas Sawari's Portfolio</title>
+    <title>Jernas Sawari - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #f4f4f4;
             color: #333;
         }
 
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
         header {
-            background-color: #4CAF50;
+            background-color: #0077b5;
             color: white;
-            padding: 20px;
+            padding: 30px 0;
             text-align: center;
         }
 
         header h1 {
-            margin: 0;
             font-size: 2.5em;
+            margin: 0;
         }
 
-        header h1 a {
+        header a {
             color: white;
             text-decoration: none;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
+        header h2 {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .profile-img {
-            display: block;
-            margin: 0 auto 20px;
-            border-radius: 50%;
+        .profile img {
             width: 150px;
             height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile .details {
+            flex-grow: 1;
+        }
+
+        .profile h3 {
+            font-size: 1.6em;
+            margin: 10px 0;
+        }
+
+        .profile p {
+            margin: 5px 0;
+        }
+
+        .contact-info,
+        .skills,
+        .projects,
+        .education,
+        .certifications {
+            margin: 30px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
         }
 
         ul {
             list-style-type: none;
-            padding-left: 0;
+            padding: 0;
         }
 
         ul li {
             margin: 8px 0;
-            font-size: 1.1em;
         }
 
-        .social-links img {
-            margin-right: 10px;
-            width: 30px;
-            height: 30px;
+        .skills ul li,
+        .projects ul li,
+        .certifications ul li {
+            font-weight: 500;
         }
 
-        .social-links a {
-            color: #4CAF50;
+        footer {
+            background-color: #0077b5;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
             text-decoration: none;
-        }
-
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-
-        .section {
-            margin-bottom: 30px;
-        }
-
-        .certification-image {
-            width: 100%;
-            border-radius: 8px;
-            margin-top: 20px;
         }
     </style>
 </head>
-
 <body>
 
     <header>
-        <h1>Hi, I'm Jer! <br/><a href="https://github.com/Jernas04">Programmer</a></h1>
+        <div class="container">
+            <h1>Hi, I'm Jer! <br/><a href="https://github.com/Jernas04">Programmer</a></h1>
+            <h2>Connecting through Technology and Innovation</h2>
+        </div>
     </header>
 
     <div class="container">
-        <h2>🤳 Connect with me:</h2>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/jernas-sawari-375a5a297" target="_blank">
-                <img alt="Jernas Sawari | LinkedIn" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />
-            </a>
-        </div>
+        <!-- Profile Section -->
+        <section class="profile">
+            <img src="YOUR_PROFILE_PICTURE_URL_HERE" alt="Jernas Sawari">
+            <div class="details">
+                <h3>Jernas Sawari</h3>
+                <p><b>Phone:</b> 09472403904</p>
+                <p><b>Email:</b> <a href="mailto:sawarijernas@gmail.com">sawarijernas@gmail.com</a></p>
+                <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/jernas-sawari-375a5a297">Jernas Sawari</a></p>
+            </div>
+        </section>
 
-        <div class="section">
+        <!-- Capstone Project -->
+        <section class="projects">
             <h2>👨‍💻 Capstone Project:</h2>
             <ul>
                 <li><b>FunPath:</b> An Android-based application designed for speech therapy for children with stuttering issues. The app utilizes <i>Automatic Speech Recognition (ASR)</i> and <i>Natural Language Processing (NLP)</i> to help enhance communication skills. This is my capstone project.</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="section">
+        <!-- Contact Information -->
+        <section class="contact-info">
             <h2>📋 Contact Information:</h2>
             <ul>
                 <li><b>Phone:</b> 09472403904</li>
                 <li><b>Email:</b> <a href="mailto:sawarijernas@gmail.com">sawarijernas@gmail.com</a></li>
             </ul>
-        </div>
+        </section>
 
-        <div class="section">
+        <!-- Professional Skills -->
+        <section class="skills">
             <h2>🛠 Professional Skills:</h2>
             <ul>
                 <li><b>Programming Languages:</b> Java, Python, C++, JavaScript, C#</li>
                 <li><b>Web Development:</b> HTML, CSS, JavaScript, Bootstrap</li>
                 <li><b>Database Management:</b> SQL</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="section">
+        <!-- Software Tools -->
+        <section class="skills">
             <h2>🖥 Software Tools:</h2>
             <ul>
                 <li>Figma - For UI/UX design and prototyping</li>
@@ -136,41 +174,30 @@
                 <li>Google Colab - For running Python code, machine learning, and data analysis</li>
                 <li>Visual Studio Code (VSCode) - For code editing and development across multiple languages and frameworks</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="section">
+        <!-- Education -->
+        <section class="education">
             <h2>🎓 Education:</h2>
             <ul>
                 <li><b>BSIT (Bachelor of Science in Information Technology)</b></li>
                 <li>Institution: CSTC Sariaya, Quezon Province</li>
                 <li>Expected Graduation: 2025</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="section">
+        <!-- Certifications and Achievements -->
+        <section class="certifications">
             <h2>🏆 Certifications and Achievements:</h2>
             <ul>
-                <li><b>Certifications:</b> 
-                    <img class="certification-image" src="YOUR_CERTIFICATE_IMAGE_URL_HERE" alt="Certification Image" />
-                </li>
+                <li><b>Certifications:</b> <i>Image Placeholder for Certification</i></li>
             </ul>
-        </div>
-
-        <div class="section">
-            <h2>🌱 Additional Information:</h2>
-            <ul>
-                <li><b>LinkedIn Profile:</b> <a href="https://www.linkedin.com/in/jernas-sawari-375a5a297">Jernas Sawari</a></li>
-                <li><b>GitHub Profile:</b> <a href="https://github.com/Jernas04">Jernas04</a></li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>👤 Profile Picture:</h2>
-            <img src="YOUR_PROFILE_PICTURE_URL_HERE" alt="Jernas Sawari" class="profile-img" />
-        </div>
+        </section>
     </div>
 
+    <footer>
+        <p>&copy; 2025 Jernas Sawari | All Rights Reserved</p>
+    </footer>
+
 </body>
-
 </html>
-
