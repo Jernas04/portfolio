@@ -196,7 +196,6 @@
                 display: flex;
             }
         }
-
     </style>
 </head>
 
@@ -220,7 +219,7 @@
     <header id="home">
         <div class="container">
             <div>
-                <h1>Hi, I'm Jer! <br /><a href="https://github.com/Jernas04" style="color: #ffd700;">Kumain kana loveee??</a></h1>
+                <h1>Hi, I'm Jer! <br /><span id="typewriter-text"></span></h1>
                 <h2>BSIT-4th Year Intern</h2>
             </div>
         </div>
@@ -289,16 +288,16 @@
 
         <!-- Certifications Section -->
         <section class="section">
-    <h2>🏆 Certifications and Achievements:</h2>
-    <ul style="text-align: center;"> <!-- Centers the list item content -->
-        <li>
-            <div style="display: inline-block; text-align: center; margin-top: 10px;"> <!-- Centers both the image and text -->
-                <img src="cert.jpg" alt="Certification Image" style="width: 500px; height: auto;">
-                <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p> <!-- Centers and styles the text -->
-            </div>
-        </li>
-    </ul>
-</section>
+            <h2>🏆 Certifications and Achievements:</h2>
+            <ul style="text-align: center;"> <!-- Centers the list item content -->
+                <li>
+                    <div style="display: inline-block; text-align: center; margin-top: 10px;"> <!-- Centers both the image and text -->
+                        <img src="cert.jpg" alt="Certification Image" style="width: 500px; height: auto;">
+                        <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p> <!-- Centers and styles the text -->
+                    </div>
+                </li>
+            </ul>
+        </section>
     </div>
 
     <footer>
@@ -313,6 +312,23 @@
         hamburger.addEventListener("click", () => {
             navLinks.classList.toggle("nav-active");
             hamburger.classList.toggle("toggle");
+        });
+
+        // Typing effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const typewriterText = document.getElementById('typewriter-text');
+            const text = 'Kumain kana loveee??';
+            let i = 0;
+
+            function type() {
+                if (i < text.length) {
+                    typewriterText.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100); // Delay for the typing effect (100ms per character)
+                }
+            }
+
+            type(); // Start typing effect when the page loads
         });
     </script>
 </body>
