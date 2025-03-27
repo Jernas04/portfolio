@@ -8,7 +8,7 @@
 
 <hr>
 
-<h2>👨‍💻 Software Development Projects:</h2>
+<h2>👨‍💻 Capstone Project:</h2>
 
 <ul>
     <li><b>FunPath:</b> An Android-based application designed for speech therapy for children with stuttering issues. The app utilizes <i>Automatic Speech Recognition (ASR)</i> and <i>Natural Language Processing (NLP)</i> to help enhance communication skills. This is my capstone project.</li>
