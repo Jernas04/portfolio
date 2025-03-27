@@ -312,33 +312,33 @@
                     typewriterHi.innerHTML += text1.charAt(i);
                     i++;
                 } else {
-                    setTimeout(() => erase(), 1000); // Delay before erasing
+                    setTimeout(() => {
+                        // After typing "Hi, I'm Jer!", start typing the next text
+                        isTypingText1 = false;
+                        type();
+                    }, 1000); // Delay before starting the next text
                 }
             } else {
                 if (j < text2.length) {
                     typewriterText.innerHTML += text2.charAt(j);
                     j++;
-                }
-            }
-            if (i < text1.length || j < text2.length) {
-                setTimeout(type, 100);
-            }
-        }
-
-        function erase() {
-            setTimeout(() => {
-                if (i > 0) {
-                    typewriterHi.innerHTML = typewriterHi.innerHTML.slice(0, -1);
-                    i--;
-                    setTimeout(erase, 100);
                 } else {
-                    isTypingText1 = false;
-                    type();
+                    // Once both texts are typed, clear them and start typing again
+                    setTimeout(clearText, 1000);
                 }
-            }, 500); // Delay for erasure
+            }
         }
 
-        type(); // Start typing effect when the page loads
+        function clearText() {
+            typewriterHi.innerHTML = '';
+            typewriterText.innerHTML = '';
+            i = 0;
+            j = 0;
+            isTypingText1 = true;
+            type(); // Restart the typing animation
+        }
+
+        type(); // Start the typing effect when the page loads
     </script>
 </body>
 
