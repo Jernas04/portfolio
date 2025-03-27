@@ -62,7 +62,7 @@
             align-items: center;
             background-color: #0077b5;
             color: white;
-            padding: 50px 0 30px 0;
+            padding: 50px 0 30px 0; /* Increased top padding to avoid overlap */
         }
 
         header h1 {
@@ -154,7 +154,7 @@
                 width: 100%;
                 text-align: center;
                 flex-direction: column;
-                margin-top: 60px;
+                margin-top: 60px; /* Add space for navbar */
             }
 
             nav ul li {
@@ -189,11 +189,12 @@
             border-right: none;
         }
 
-        /* Make certification image responsive */
-        .cert-image {
-            max-width: 100%;
-            height: auto;
-        }
+        section .section img {
+    width: 100%; /* Makes the image take up the full width of its container */
+    max-width: 500px; /* Prevents the image from exceeding 500px */
+    height: auto; /* Maintains the aspect ratio */
+}
+
     </style>
 </head>
 
@@ -201,7 +202,7 @@
 
     <!-- Navbar -->
     <nav id="navbar">
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <div class="hamburger" id="hamburger">
             <div></div>
             <div></div>
             <div></div>
@@ -291,16 +292,16 @@
 
         <!-- Certifications Section -->
         <section class="section">
-            <h2>🏆 Certifications and Achievements:</h2>
-            <ul style="text-align: center;">
-                <li>
-                    <div style="display: inline-block; text-align: center; margin-top: 10px;">
-                        <img src="cert.jpg" alt="Certification Image" class="cert-image">
-                        <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p>
-                    </div>
-                </li>
-            </ul>
-        </section>
+    <h2>🏆 Certifications and Achievements:</h2>
+    <ul style="text-align: center;">
+        <li>
+            <div style="display: inline-block; text-align: center; margin-top: 10px;">
+                <img src="cert.jpg" alt="Certification Image" style="width: 100%; max-width: 500px; height: auto;">
+                <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p>
+            </div>
+        </li>
+    </ul>
+</section>
     </div>
 
     <footer>
@@ -314,28 +315,32 @@
         let j = 0;
         let isTypingText1 = true;
 
-        const text1 = "Hi, I'm Jer!";
-        const text2 = "Mobile Application Developer";
+        const text1 = "Hi, I'm Jer!"; // First text to type
+        const text2 = "Mobile Application Developer"; // Second text to type
 
         function type() {
             if (isTypingText1) {
+                // Typing the first text "Hi, I'm Jer!"
                 if (i < text1.length) {
                     typewriterHi.innerHTML += text1.charAt(i);
                     i++;
-                    setTimeout(type, 100);
+                    setTimeout(type, 100); // Type next character
                 } else {
+                    // Once done typing text1, wait before typing the second text
                     setTimeout(() => {
                         isTypingText1 = false;
-                        type();
+                        type(); // Start typing the second text
                     }, 1000);
                 }
             } else {
+                // Typing the second text "Kumain kana loveee??"
                 if (j < text2.length) {
                     typewriterText.innerHTML += text2.charAt(j);
                     j++;
-                    setTimeout(type, 100);
+                    setTimeout(type, 100); // Type next character
                 } else {
-                    setTimeout(clearText, 2000);
+                    // Once done typing the second text, clear both texts and start over
+                    setTimeout(clearText, 2000); // Delay before clearing
                 }
             }
         }
@@ -346,14 +351,19 @@
             i = 0;
             j = 0;
             isTypingText1 = true;
-            type();
+            type(); // Restart the typing animation
         }
 
-        function toggleMenu() {
-            document.getElementById("navbar").classList.toggle("nav-active");
+        type(); // Start the typing effect when the page loads
+
+        // Add no-cursor class after typing ends
+        function removeCursor() {
+            typewriterHi.classList.add("no-cursor");
+            typewriterText.classList.add("no-cursor");
         }
 
-        type();
+        // Call the removeCursor function after typing is done
+        setTimeout(removeCursor, 1000); // Delay this just after typing the first text
     </script>
 
 </body>
