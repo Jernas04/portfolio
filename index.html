@@ -219,7 +219,7 @@
     <header id="home">
         <div class="container">
             <div>
-                <h1>Hi, I'm Jer! <br /><span id="typewriter-text"></span></h1>
+                <h1><span id="typewriter-hi">Hi, I'm Jer!</span> <br /><span id="typewriter-text"></span></h1>
                 <h2>BSIT-4th Year Intern</h2>
             </div>
         </div>
@@ -314,17 +314,32 @@
             hamburger.classList.toggle("toggle");
         });
 
-        // Typing effect
+        // Typing effect for both texts
         document.addEventListener('DOMContentLoaded', () => {
+            const typewriterHi = document.getElementById('typewriter-hi');
             const typewriterText = document.getElementById('typewriter-text');
-            const text = 'Kumain kana loveee??';
+            const text1 = 'Hi, I\'m Jer!';
+            const text2 = 'Kumain kana loveee??';
             let i = 0;
+            let j = 0;
+            let isTypingText1 = true;
 
             function type() {
-                if (i < text.length) {
-                    typewriterText.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, 100); // Delay for the typing effect (100ms per character)
+                if (isTypingText1) {
+                    if (i < text1.length) {
+                        typewriterHi.innerHTML += text1.charAt(i);
+                        i++;
+                    } else {
+                        isTypingText1 = false;
+                    }
+                } else {
+                    if (j < text2.length) {
+                        typewriterText.innerHTML += text2.charAt(j);
+                        j++;
+                    }
+                }
+                if (i < text1.length || j < text2.length) {
+                    setTimeout(type, 100);
                 }
             }
 
