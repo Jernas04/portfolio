@@ -190,7 +190,7 @@
 
         /* Hide cursor after typing is finished */
         .no-cursor {
-            border-right: none;
+            border-right: none !important;
         }
 
         section .section img {
@@ -352,7 +352,7 @@
             isTypingText1 = true;
             type();
 
-            // Remove the blinking cursor
+            // Remove the blinking cursor immediately after typing
             typewriterHi.classList.add('no-cursor');
             typewriterText.classList.add('no-cursor');
         }
