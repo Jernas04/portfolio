@@ -84,7 +84,6 @@
             margin: 0;
             white-space: nowrap;
             overflow: hidden;
-            animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
             border-right: 3px solid #fff; /* Cursor effect */
             padding-right: 10px;
         }
@@ -97,23 +96,6 @@
         header h2 {
             margin-top: 10px;
             font-size: 1.2em;
-        }
-
-        /* Typing Animation */
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        /* Cursor Blinking Animation */
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
         }
 
         /* Profile Section */
@@ -218,7 +200,6 @@
                 display: flex;
             }
         }
-
     </style>
 </head>
 
@@ -242,7 +223,7 @@
     <header id="home">
         <div class="container">
             <div>
-                <h1>Hi, I'm Jer! <br /><a href="https://github.com/Jernas04" style="color: #ffd700;">Kumain kana loveee??</a></h1>
+                <h1 id="typedText">Hi, I'm Jer!</h1>
                 <h2>BSIT-4th Year Intern</h2>
             </div>
         </div>
@@ -328,14 +309,16 @@
     </footer>
 
     <script>
-        const hamburger = document.getElementById("hamburger");
-        const navbar = document.getElementById("navbar");
-        const navLinks = document.getElementById("nav-links");
+        const texts = ["Hi, I'm Jer!", "Kumain kana loveee??"];
+        let index = 0;
+        const typedTextElement = document.getElementById("typedText");
 
-        hamburger.addEventListener("click", () => {
-            navLinks.classList.toggle("nav-active");
-            hamburger.classList.toggle("toggle");
-        });
+        function typeText() {
+            typedTextElement.textContent = texts[index];
+            index = (index + 1) % texts.length; // Toggle between the texts
+        }
+
+        setInterval(typeText, 2000); // Change text every 2 seconds
     </script>
 </body>
 
