@@ -298,50 +298,53 @@
     </footer>
 
     <script>
-        const typewriterHi = document.getElementById('typewriter-hi');
-        const typewriterText = document.getElementById('typewriter-text');
-        const text1 = 'Hi, I\'m Jer!';
-        const text2 = 'Kumain kana loveee??';
-        let i = 0;
-        let j = 0;
-        let isTypingText1 = true;
+    const typewriterHi = document.getElementById('typewriter-hi');
+    const typewriterText = document.getElementById('typewriter-text');
+    let i = 0;
+    let j = 0;
+    let isTypingText1 = true;
 
-        function type() {
-            if (isTypingText1) {
-                if (i < text1.length) {
-                    typewriterHi.innerHTML += text1.charAt(i);
-                    i++;
-                    setTimeout(type, 100); // Delay between typing each character
-                } else {
-                    setTimeout(() => {
-                        // After typing "Hi, I'm Jer!", start typing the next text
-                        isTypingText1 = false;
-                        type();
-                    }, 1000); // Delay before starting the next text
-                }
+    const text1 = "Hi, I'm Jer!"; // First text to type
+    const text2 = "Kumain kana loveee??"; // Second text to type
+
+    function type() {
+        if (isTypingText1) {
+            // Typing the first text "Hi, I'm Jer!"
+            if (i < text1.length) {
+                typewriterHi.innerHTML += text1.charAt(i);
+                i++;
+                setTimeout(type, 100); // Type next character
             } else {
-                if (j < text2.length) {
-                    typewriterText.innerHTML += text2.charAt(j);
-                    j++;
-                    setTimeout(type, 100); // Delay between typing each character
-                } else {
-                    // Once both texts are typed, clear them and start over
-                    setTimeout(clearText, 2000); // Delay before clearing
-                }
+                // Once done typing text1, wait before typing the second text
+                setTimeout(() => {
+                    isTypingText1 = false;
+                    type(); // Start typing the second text
+                }, 1000);
+            }
+        } else {
+            // Typing the second text "Kumain kana loveee??"
+            if (j < text2.length) {
+                typewriterText.innerHTML += text2.charAt(j);
+                j++;
+                setTimeout(type, 100); // Type next character
+            } else {
+                // Once done typing the second text, clear both texts and start over
+                setTimeout(clearText, 2000); // Delay before clearing
             }
         }
+    }
 
-        function clearText() {
-            typewriterHi.innerHTML = '';
-            typewriterText.innerHTML = '';
-            i = 0;
-            j = 0;
-            isTypingText1 = true;
-            type(); // Restart the typing animation
-        }
+    function clearText() {
+        typewriterHi.innerHTML = '';
+        typewriterText.innerHTML = '';
+        i = 0;
+        j = 0;
+        isTypingText1 = true;
+        type(); // Restart the typing animation
+    }
 
-        type(); // Start the typing effect when the page loads
-    </script>
+    type(); // Start the typing effect when the page loads
+</script>
 
 </body>
 
