@@ -55,6 +55,40 @@
             text-decoration: underline;
         }
 
+        /* Mobile Navbar */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                width: 100%;
+                text-align: center;
+                flex-direction: column;
+                margin-top: 60px; /* Add space for navbar */
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hamburger div {
+                margin: 6px 0;
+                width: 30px;
+                height: 3px;
+                background-color: white;
+                transition: 0.3s;
+            }
+
+            .nav-active ul {
+                display: flex;
+            }
+        }
+
         /* Header Section */
         header {
             display: flex;
@@ -62,7 +96,7 @@
             align-items: center;
             background-color: #0077b5;
             color: white;
-            padding: 50px 0 30px 0;
+            padding: 50px 0 30px 0; /* Increased top padding to avoid overlap */
         }
 
         header h1 {
@@ -91,6 +125,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex-wrap: wrap;
             justify-content: center;
+            text-align: center;
         }
 
         .profile img {
@@ -111,6 +146,25 @@
 
         .profile p {
             margin: 5px 0;
+        }
+
+        /* Responsive Profile Section */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile img {
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile .details {
+                padding: 0;
+            }
         }
 
         /* Section Styling */
@@ -149,36 +203,6 @@
             text-decoration: none;
         }
 
-        /* Mobile Navbar */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                width: 100%;
-                text-align: center;
-                flex-direction: column;
-                margin-top: 60px;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-
-            .hamburger div {
-                margin: 6px 0;
-            }
-
-            .nav-active ul {
-                display: flex;
-            }
-        }
-
         /* Typing Effect */
         .typing {
             display: inline-block;
@@ -188,25 +212,6 @@
 
         .no-cursor {
             border-right: none;
-        }
-
-        /* Responsive Profile Section */
-        @media (max-width: 768px) {
-            .profile {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile img {
-                margin-right: 0;
-                margin-bottom: 20px;
-                width: 120px;
-                height: 120px;
-            }
-
-            .profile .details {
-                padding: 0;
-            }
         }
     </style>
 </head>
@@ -328,28 +333,32 @@
         let j = 0;
         let isTypingText1 = true;
 
-        const text1 = "Hi, I'm Jer!"; 
-        const text2 = "Mobile Application Developer"; 
+        const text1 = "Hi, I'm Jer!"; // First text to type
+        const text2 = "Mobile Application Developer"; // Second text to type
 
         function type() {
             if (isTypingText1) {
+                // Typing the first text "Hi, I'm Jer!"
                 if (i < text1.length) {
                     typewriterHi.innerHTML += text1.charAt(i);
                     i++;
-                    setTimeout(type, 100);
+                    setTimeout(type, 100); // Type next character
                 } else {
+                    // Once done typing text1, wait before typing the second text
                     setTimeout(() => {
                         isTypingText1 = false;
-                        type();
+                        type(); // Start typing the second text
                     }, 1000);
                 }
             } else {
+                // Typing the second text "Mobile Application Developer"
                 if (j < text2.length) {
                     typewriterText.innerHTML += text2.charAt(j);
                     j++;
-                    setTimeout(type, 100);
+                    setTimeout(type, 100); // Type next character
                 } else {
-                    setTimeout(clearText, 2000);
+                    // Once done typing the second text, clear both texts and start over
+                    setTimeout(clearText, 2000); // Delay before clearing
                 }
             }
         }
@@ -360,26 +369,26 @@
             i = 0;
             j = 0;
             isTypingText1 = true;
-            type();
+            type(); // Restart the typing animation
         }
 
-        type();
+        type(); // Start the typing effect when the page loads
 
-        // Hamburger Menu Script
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-active');
-        });
-
-        // Remove cursor after typing
+        // Add no-cursor class after typing ends
         function removeCursor() {
             typewriterHi.classList.add("no-cursor");
             typewriterText.classList.add("no-cursor");
         }
 
-        setTimeout(removeCursor, 1000);
+        // Call the removeCursor function after typing is done
+        setTimeout(removeCursor, 1000); // Delay this just after typing the first text
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.getElementById('navbar');
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('nav-active');
+        });
     </script>
 
 </body>
