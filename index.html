@@ -55,20 +55,6 @@
             text-decoration: underline;
         }
 
-        /* Hamburger menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 30px;
-            height: 4px;
-            background-color: white;
-            margin: 6px 0;
-            transition: 0.4s;
-        }
-
         /* Header Section */
         header {
             display: flex;
@@ -148,12 +134,6 @@
             margin: 8px 0;
         }
 
-        .skills ul li,
-        .projects ul li,
-        .certifications ul li {
-            font-weight: 500;
-        }
-
         /* Footer Styling */
         footer {
             background-color: #0077b5;
@@ -196,6 +176,14 @@
                 display: flex;
             }
         }
+
+        /* Typing Effect */
+        .typing {
+            display: inline-block;
+            border-right: 2px solid;
+            padding-right: 5px;
+        }
+
     </style>
 </head>
 
@@ -219,7 +207,12 @@
     <header id="home">
         <div class="container">
             <div>
-                <h1><span id="typewriter-hi">Hi, I'm Jer!</span> <br /><span id="typewriter-text"></span></h1>
+                <h1>
+                    <span id="typewriter-hi" class="typing"></span><br />
+                    <a href="https://github.com/Jernas04" style="color: #ffd700;">
+                        <span id="typewriter-text" class="typing"></span>
+                    </a>
+                </h1>
                 <h2>BSIT-4th Year Intern</h2>
             </div>
         </div>
@@ -305,46 +298,47 @@
     </footer>
 
     <script>
-        const hamburger = document.getElementById("hamburger");
-        const navbar = document.getElementById("navbar");
-        const navLinks = document.getElementById("nav-links");
+        const typewriterHi = document.getElementById('typewriter-hi');
+        const typewriterText = document.getElementById('typewriter-text');
+        const text1 = 'Hi, I\'m Jer!';
+        const text2 = 'Kumain kana loveee??';
+        let i = 0;
+        let j = 0;
+        let isTypingText1 = true;
 
-        hamburger.addEventListener("click", () => {
-            navLinks.classList.toggle("nav-active");
-            hamburger.classList.toggle("toggle");
-        });
-
-        // Typing effect for both texts
-        document.addEventListener('DOMContentLoaded', () => {
-            const typewriterHi = document.getElementById('typewriter-hi');
-            const typewriterText = document.getElementById('typewriter-text');
-            const text1 = 'Hi, I\'m Jer!';
-            const text2 = 'Kumain kana loveee??';
-            let i = 0;
-            let j = 0;
-            let isTypingText1 = true;
-
-            function type() {
-                if (isTypingText1) {
-                    if (i < text1.length) {
-                        typewriterHi.innerHTML += text1.charAt(i);
-                        i++;
-                    } else {
-                        isTypingText1 = false;
-                    }
+        function type() {
+            if (isTypingText1) {
+                if (i < text1.length) {
+                    typewriterHi.innerHTML += text1.charAt(i);
+                    i++;
                 } else {
-                    if (j < text2.length) {
-                        typewriterText.innerHTML += text2.charAt(j);
-                        j++;
-                    }
+                    setTimeout(() => erase(), 1000); // Delay before erasing
                 }
-                if (i < text1.length || j < text2.length) {
-                    setTimeout(type, 100);
+            } else {
+                if (j < text2.length) {
+                    typewriterText.innerHTML += text2.charAt(j);
+                    j++;
                 }
             }
+            if (i < text1.length || j < text2.length) {
+                setTimeout(type, 100);
+            }
+        }
 
-            type(); // Start typing effect when the page loads
-        });
+        function erase() {
+            setTimeout(() => {
+                if (i > 0) {
+                    typewriterHi.innerHTML = typewriterHi.innerHTML.slice(0, -1);
+                    i--;
+                    setTimeout(erase, 100);
+                } else {
+                    isTypingText1 = false;
+                    type();
+                }
+            }, 500); // Delay for erasure
+        }
+
+        type(); // Start typing effect when the page loads
     </script>
 </body>
 
