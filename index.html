@@ -62,7 +62,7 @@
                 width: 100%;
                 text-align: center;
                 flex-direction: column;
-                margin-top: 60px; /* Add space for navbar */
+                margin-top: 60px;
             }
 
             nav ul li {
@@ -96,7 +96,7 @@
             align-items: center;
             background-color: #0077b5;
             color: white;
-            padding: 50px 0 30px 0; /* Increased top padding to avoid overlap */
+            padding: 50px 0 30px 0;
         }
 
         header h1 {
@@ -117,14 +117,13 @@
         /* Profile Section */
         .profile {
             display: flex;
+            flex-direction: column;
             align-items: center;
             margin: 30px 0;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex-wrap: wrap;
-            justify-content: center;
             text-align: center;
         }
 
@@ -132,11 +131,11 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin-right: 20px;
+            margin-bottom: 20px;
         }
 
         .profile .details {
-            flex-grow: 1;
+            max-width: 500px;
         }
 
         .profile h3 {
@@ -150,16 +149,10 @@
 
         /* Responsive Profile Section */
         @media (max-width: 768px) {
-            .profile {
-                flex-direction: column;
-                text-align: center;
-            }
-
             .profile img {
-                margin-right: 0;
-                margin-bottom: 20px;
                 width: 120px;
                 height: 120px;
+                margin-bottom: 15px;
             }
 
             .profile .details {
@@ -338,26 +331,22 @@
 
         function type() {
             if (isTypingText1) {
-                // Typing the first text "Hi, I'm Jer!"
                 if (i < text1.length) {
                     typewriterHi.innerHTML += text1.charAt(i);
                     i++;
-                    setTimeout(type, 100); // Type next character
+                    setTimeout(type, 100);
                 } else {
-                    // Once done typing text1, wait before typing the second text
                     setTimeout(() => {
                         isTypingText1 = false;
                         type(); // Start typing the second text
                     }, 1000);
                 }
             } else {
-                // Typing the second text "Mobile Application Developer"
                 if (j < text2.length) {
                     typewriterText.innerHTML += text2.charAt(j);
                     j++;
-                    setTimeout(type, 100); // Type next character
+                    setTimeout(type, 100);
                 } else {
-                    // Once done typing the second text, clear both texts and start over
                     setTimeout(clearText, 2000); // Delay before clearing
                 }
             }
@@ -380,8 +369,7 @@
             typewriterText.classList.add("no-cursor");
         }
 
-        // Call the removeCursor function after typing is done
-        setTimeout(removeCursor, 1000); // Delay this just after typing the first text
+        setTimeout(removeCursor, 1000); // Call this function after typing
 
         // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
