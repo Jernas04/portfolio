@@ -64,18 +64,18 @@
                 flex-direction: column;
                 margin-top: 60px;
             }
-
+        
             nav ul li {
                 margin: 10px 0;
             }
-
+        
             .hamburger {
                 display: block;
                 position: absolute;
                 top: 20px;
                 right: 20px;
             }
-
+        
             .hamburger div {
                 margin: 6px 0;
                 width: 30px;
@@ -83,7 +83,7 @@
                 background-color: white;
                 transition: 0.3s;
             }
-
+        
             .nav-active ul {
                 display: flex;
             }
@@ -458,9 +458,10 @@
 
         // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
-        const navbar = document.getElementById('navbar');
+        const navLinks = document.getElementById('nav-links');
+        
         hamburger.addEventListener('click', () => {
-            navbar.classList.toggle('nav-active');
+            navLinks.classList.toggle('nav-active');
         });
 
         // Image Slider functionality with Manual Controls (dots and image click)
@@ -523,7 +524,6 @@
         // Initialize Slider and Dots
         createDots(); // Create the dots based on the number of slides
         startSlider(); // Start the automatic slider when the page loads
-
     </script>
 
 </body>
