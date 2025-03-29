@@ -225,8 +225,10 @@
         }
 
         .slider img {
-            width: 100%;
-            height: auto;
+            width: 100%; /* Ensure the image fills the container */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 800px; /* Set max width for the image */
+            margin: 0 auto; /* Center the images */
             border-radius: 8px;
         }
 
