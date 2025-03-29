@@ -55,40 +55,6 @@
             text-decoration: underline;
         }
 
-        /* Mobile Navbar */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                width: 100%;
-                text-align: center;
-                flex-direction: column;
-                margin-top: 60px;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-
-            .hamburger div {
-                margin: 6px 0;
-                width: 30px;
-                height: 3px;
-                background-color: white;
-                transition: 0.3s;
-            }
-
-            .nav-active ul {
-                display: flex;
-            }
-        }
-
         /* Header Section */
         header {
             display: flex;
@@ -145,19 +111,6 @@
 
         .profile p {
             margin: 5px 0;
-        }
-
-        /* Responsive Profile Section */
-        @media (max-width: 768px) {
-            .profile img {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 15px;
-            }
-
-            .profile .details {
-                padding: 0;
-            }
         }
 
         /* Section Styling */
@@ -227,7 +180,7 @@
         .slider img {
             width: 100%; /* Ensure the image fills the container */
             height: auto; /* Maintain aspect ratio */
-            max-width: 800px; /* Set max width for the image */
+            max-width: 600px; /* Set max width for the image */
             margin: 0 auto; /* Center the images */
             border-radius: 8px;
         }
@@ -252,6 +205,27 @@
         .slider-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+
+        /* Dot Navigation */
+        .dot-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .active {
+            background-color: #0077b5;
+        }
     </style>
 </head>
 
@@ -259,11 +233,6 @@
 
     <!-- Navbar -->
     <nav id="navbar">
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
         <ul id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Me</a></li>
@@ -346,6 +315,9 @@
                     <button class="slider-button" id="prev">❮</button>
                     <button class="slider-button" id="next">❯</button>
                 </div>
+                <div class="dot-container" id="dots">
+                    <!-- Dots will be inserted dynamically -->
+                </div>
             </div>
         </section>
 
@@ -358,50 +330,6 @@
             </ul>
         </section>
 
-        <!-- Professional Skills -->
-        <section class="skills">
-            <h2>🛠 Skills:</h2>
-            <ul>
-                <li><b>Programming Languages:</b> Java, Python, C++, JavaScript, C#</li>
-                <li><b>Web Development:</b> HTML, CSS, JavaScript, Bootstrap</li>
-                <li><b>Database Management:</b> SQL</li>
-            </ul>
-        </section>
-
-        <!-- Software Tools -->
-        <section class="skills">
-            <h2>🖥 Software Tools:</h2>
-            <ul>
-                <li>Figma - For UI/UX design and prototyping</li>
-                <li>Android Studio - For Android application development</li>
-                <li>Firebase - For backend services and real-time databases</li>
-                <li>Google Colab - For running Python code, machine learning, and data analysis</li>
-                <li>Visual Studio Code (VSCode) - For code editing and development across multiple languages and frameworks</li>
-            </ul>
-        </section>
-
-        <!-- Education -->
-        <section class="education">
-            <h2>🎓 Education:</h2>
-            <ul>
-                <li><b>BSIT (Bachelor of Science in Information Technology)</b></li>
-                <li>Institution: CSTC - College of Sciences, Technology and Communication, Inc. Sariaya, Quezon Province</li>
-                <li>Expected Graduation: 2025</li>
-            </ul>
-        </section>
-
-        <!-- Certifications Section -->
-        <section class="section">
-            <h2>🏆 Certifications and Achievements:</h2>
-            <ul style="text-align: center;">
-                <li>
-                    <div style="display: inline-block; text-align: center; margin-top: 10px;">
-                        <img src="cert.jpg" alt="Certification Image" style="width: 100%; max-width: 500px; height: auto;">
-                        <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p>
-                    </div>
-                </li>
-            </ul>
-        </section>
     </div>
 
     <footer>
@@ -453,32 +381,40 @@
 
         type(); // Start the typing effect when the page loads
 
-        // Add no-cursor class after typing ends
-        function removeCursor() {
-            typewriterHi.classList.add("no-cursor");
-            typewriterText.classList.add("no-cursor");
-        }
-
-        setTimeout(removeCursor, 1000); // Call this function after typing
-
-        // Hamburger Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navbar = document.getElementById('navbar');
-        hamburger.addEventListener('click', () => {
-            navbar.classList.toggle('nav-active');
-        });
-
-        // Slider Functionality
+        // Automatic slider functionality
         let slideIndex = 0;
+        let slides = document.querySelectorAll('.slide');
+        let dots = document.getElementById('dots');
 
         function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
             if (index >= slides.length) slideIndex = 0;
             if (index < 0) slideIndex = slides.length - 1;
-            const slideContainer = document.getElementById('slider');
-            slideContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+            document.querySelector('.slides').style.transform = `translateX(-${slideIndex * 100}%)`;
+
+            // Update dots
+            let dotElems = dots.querySelectorAll('.dot');
+            dotElems.forEach(dot => dot.classList.remove('active'));
+            dotElems[slideIndex].classList.add('active');
         }
 
+        function createDots() {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => showSlide(index));
+                dots.appendChild(dot);
+            });
+        }
+
+        createDots();
+        showSlide(slideIndex);
+
+        setInterval(() => {
+            slideIndex++;
+            showSlide(slideIndex);
+        }, 5000); // Slide every 5 seconds
+
+        // Navigation Buttons
         document.getElementById('next').addEventListener('click', () => {
             slideIndex++;
             showSlide(slideIndex);
