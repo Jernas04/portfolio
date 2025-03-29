@@ -55,6 +55,40 @@
             text-decoration: underline;
         }
 
+        /* Mobile Navbar */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                width: 100%;
+                text-align: center;
+                flex-direction: column;
+                margin-top: 60px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hamburger div {
+                margin: 6px 0;
+                width: 30px;
+                height: 3px;
+                background-color: white;
+                transition: 0.3s;
+            }
+
+            .nav-active ul {
+                display: flex;
+            }
+        }
+
         /* Header Section */
         header {
             display: flex;
@@ -113,6 +147,19 @@
             margin: 5px 0;
         }
 
+        /* Responsive Profile Section */
+        @media (max-width: 768px) {
+            .profile img {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 15px;
+            }
+
+            .profile .details {
+                padding: 0;
+            }
+        }
+
         /* Section Styling */
         section {
             background-color: white;
@@ -160,71 +207,32 @@
             border-right: none;
         }
 
-        /* Slider Styles */
-        .slider {
+        /* Image Slider Styling */
+        .image-slider {
             position: relative;
-            max-width: 100%;
-            margin: 20px 0;
-        }
-
-        .slides {
-            display: flex;
-            overflow: hidden;
-        }
-
-        .slide {
-            min-width: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slider img {
-            width: 100%; /* Ensure the image fills the container */
-            height: auto; /* Maintain aspect ratio */
-            max-width: 600px; /* Set max width for the image */
-            margin: 0 auto; /* Center the images */
-            border-radius: 8px;
-        }
-
-        .slider-buttons {
-            position: absolute;
-            top: 50%;
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            max-width: 800px; /* Adjust max width */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px; /* Rounded corners for the slider */
         }
-
-        .slider-button {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
+        
+        .image-slider .slide {
+            width: 100%;
+            height: auto;
+            display: none; /* Hide all images initially */
+            object-fit: cover;
         }
-
-        .slider-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        
+        .image-slider .active {
+            display: block; /* Show only the active image */
         }
-
-        /* Dot Navigation */
-        .dot-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            margin: 0 5px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
-
-        .active {
-            background-color: #0077b5;
+        
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .image-slider {
+                max-width: 100%; /* Make it responsive on mobile */
+            }
         }
     </style>
 </head>
@@ -233,6 +241,11 @@
 
     <!-- Navbar -->
     <nav id="navbar">
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <ul id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Me</a></li>
@@ -273,51 +286,19 @@
             <ul>
                 <li><b>FunPath:</b> An Android-based application designed for speech therapy for children with stuttering issues. The app utilizes <i>Automatic Speech Recognition (ASR)</i> and <i>Natural Language Processing (NLP)</i> to help enhance communication skills. This is my capstone project.</li>
             </ul>
-
             <!-- Image Slider -->
-            <div class="slider">
-                <div class="slides" id="slider">
-                    <div class="slide">
-                        <img src="mainscreen.jpg" alt="Image 1">
-                    </div>
-                    <div class="slide">
-                        <img src="menu.jpg" alt="Image 2">
-                    </div>
-                    <div class="slide">
-                        <img src="profile.png" alt="Image 3">
-                    </div>
-                    <div class="slide">
-                        <img src="rewards.png" alt="Image 4">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals1.png" alt="Image 5">
-                    </div>
-                    <div class="slide">
-                        <img src="manauls2.png" alt="Image 6">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals3.png" alt="Image 7">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals4.png" alt="Image 8">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals5.png" alt="Image 9">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals6.png" alt="Image 10">
-                    </div>
-                    <div class="slide">
-                        <img src="manuals7.png" alt="Image 11">
-                    </div>
-                </div>
-                <div class="slider-buttons">
-                    <button class="slider-button" id="prev">❮</button>
-                    <button class="slider-button" id="next">❯</button>
-                </div>
-                <div class="dot-container" id="dots">
-                    <!-- Dots will be inserted dynamically -->
-                </div>
+            <div class="image-slider">
+                <img src="mainscreen.jpg" alt="Slide 1" class="slide" />
+                <img src="menu.jpg" alt="Slide 2" class="slide" />
+                <img src="profile.png" alt="Slide 3" class="slide" />
+                <img src="rewards.png" alt="Slide 4" class="slide" />
+                <img src="manuals1.png" alt="Slide 5" class="slide" />
+                <img src="manauls2.png" alt="Slide 6" class="slide" />
+                <img src="manuals3.png" alt="Slide 7" class="slide" />
+                <img src="manuals4.png" alt="Slide 8" class="slide" />
+                <img src="manuals5.png" alt="Slide 9" class="slide" />
+                <img src="manuals6.png" alt="Slide 10" class="slide" />
+                <img src="manuals7.png" alt="Slide 11" class="slide" />
             </div>
         </section>
 
@@ -330,6 +311,50 @@
             </ul>
         </section>
 
+        <!-- Professional Skills -->
+        <section class="skills">
+            <h2>🛠 Skills:</h2>
+            <ul>
+                <li><b>Programming Languages:</b> Java, Python, C++, JavaScript, C#</li>
+                <li><b>Web Development:</b> HTML, CSS, JavaScript, Bootstrap</li>
+                <li><b>Database Management:</b> SQL</li>
+            </ul>
+        </section>
+
+        <!-- Software Tools -->
+        <section class="skills">
+            <h2>🖥 Software Tools:</h2>
+            <ul>
+                <li>Figma - For UI/UX design and prototyping</li>
+                <li>Android Studio - For Android application development</li>
+                <li>Firebase - For backend services and real-time databases</li>
+                <li>Google Colab - For running Python code, machine learning, and data analysis</li>
+                <li>Visual Studio Code (VSCode) - For code editing and development across multiple languages and frameworks</li>
+            </ul>
+        </section>
+
+        <!-- Education -->
+        <section class="education">
+            <h2>🎓 Education:</h2>
+            <ul>
+                <li><b>BSIT (Bachelor of Science in Information Technology)</b></li>
+                <li>Institution: CSTC - College of Sciences, Technology and Communication, Inc. Sariaya, Quezon Province</li>
+                <li>Expected Graduation: 2025</li>
+            </ul>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section">
+            <h2>🏆 Certifications and Achievements:</h2>
+            <ul style="text-align: center;">
+                <li>
+                    <div style="display: inline-block; text-align: center; margin-top: 10px;">
+                        <img src="cert.jpg" alt="Certification Image" style="width: 100%; max-width: 500px; height: auto;">
+                        <p style="margin-top: 10px; font-weight: bold;">Capstone Exhibit</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </div>
 
     <footer>
@@ -337,7 +362,6 @@
     </footer>
 
     <script>
-        // Typewriter effect script
         const typewriterHi = document.getElementById('typewriter-hi');
         const typewriterText = document.getElementById('typewriter-text');
         let i = 0;
@@ -381,49 +405,45 @@
 
         type(); // Start the typing effect when the page loads
 
-        // Automatic slider functionality
-        let slideIndex = 0;
-        let slides = document.querySelectorAll('.slide');
-        let dots = document.getElementById('dots');
-
-        function showSlide(index) {
-            if (index >= slides.length) slideIndex = 0;
-            if (index < 0) slideIndex = slides.length - 1;
-            document.querySelector('.slides').style.transform = `translateX(-${slideIndex * 100}%)`;
-
-            // Update dots
-            let dotElems = dots.querySelectorAll('.dot');
-            dotElems.forEach(dot => dot.classList.remove('active'));
-            dotElems[slideIndex].classList.add('active');
+        // Add no-cursor class after typing ends
+        function removeCursor() {
+            typewriterHi.classList.add("no-cursor");
+            typewriterText.classList.add("no-cursor");
         }
 
-        function createDots() {
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                dot.addEventListener('click', () => showSlide(index));
-                dots.appendChild(dot);
+        setTimeout(removeCursor, 1000); // Call this function after typing
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.getElementById('navbar');
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('nav-active');
+        });
+
+        // Image Slider functionality
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.image-slider .slide');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
             });
         }
-
-        createDots();
-        showSlide(slideIndex);
-
-        setInterval(() => {
-            slideIndex++;
-            showSlide(slideIndex);
-        }, 5000); // Slide every 5 seconds
-
-        // Navigation Buttons
-        document.getElementById('next').addEventListener('click', () => {
-            slideIndex++;
-            showSlide(slideIndex);
-        });
-
-        document.getElementById('prev').addEventListener('click', () => {
-            slideIndex--;
-            showSlide(slideIndex);
-        });
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length; // Loop back to the first slide after the last one
+            showSlide(currentIndex);
+        }
+        
+        function startSlider() {
+            showSlide(currentIndex);
+            setInterval(nextSlide, 3000); // Change image every 3 seconds
+        }
+        
+        startSlider(); // Start the automatic slider when the page loads
     </script>
 
 </body>
