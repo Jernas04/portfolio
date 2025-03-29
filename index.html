@@ -215,6 +215,7 @@
             margin: 20px auto;
             overflow: hidden;
             border-radius: 8px; /* Rounded corners for the slider */
+            cursor: pointer; /* Make it look clickable */
         }
         
         .image-slider .slide {
@@ -462,7 +463,7 @@
             navbar.classList.toggle('nav-active');
         });
 
-        // Image Slider functionality with Manual Controls (dots)
+        // Image Slider functionality with Manual Controls (dots and image click)
         let currentIndex = 0;
         const slides = document.querySelectorAll('.image-slider .slide');
         const dotsContainer = document.querySelector('.slider-dots');
@@ -502,14 +503,27 @@
             showSlide(currentIndex);
         }
         
+        // Function to handle image click (next slide on click)
+        function handleImageClick() {
+            currentIndex = (currentIndex + 1) % slides.length; // Go to next slide when image is clicked
+            showSlide(currentIndex);
+        }
+        
         function startSlider() {
             showSlide(currentIndex);
             setInterval(nextSlide, 3000); // Change image every 3 seconds
+        
+            // Add event listener for image click to move to next slide
+            const sliderImages = document.querySelectorAll('.image-slider .slide');
+            sliderImages.forEach(image => {
+                image.addEventListener('click', handleImageClick);
+            });
         }
         
         // Initialize Slider and Dots
         createDots(); // Create the dots based on the number of slides
         startSlider(); // Start the automatic slider when the page loads
+
     </script>
 
 </body>
