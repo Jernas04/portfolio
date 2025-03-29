@@ -211,18 +211,11 @@
         .image-slider {
             position: relative;
             width: 100%;
-            max-width: 100px; /* Adjust max width */
+            max-width: 800px; /* Adjust max width */
             margin: 20px auto;
             overflow: hidden;
             border-radius: 8px; /* Rounded corners for the slider */
             cursor: pointer; /* Make it look clickable */
-        }
-
-        /* Image Resizing for the images themselves */
-        .image-slider img {
-            width: 100%;  /* Ensure images take up the full width of the container */
-            height: auto;  /* Maintain aspect ratio */
-            object-fit: cover; /* Make images cover the container */
         }
         
         .image-slider .slide {
@@ -274,16 +267,13 @@
             }
         }
         
-        /* Image Resizing for larger screens (e.g., laptops/desktops) */
+        /* Additional Styling for Larger Screens (e.g., laptops/desktops) */
         @media (min-width: 1024px) {
             .image-slider {
-                max-width: 70%; /* Set to 70% of the container's width on larger screens */
-            }
-        
-            .image-slider img {
-                width: 100%; /* Ensure the images resize properly */
+                max-width: 600px; /* Limit the max-width on larger screens */
             }
         }
+    </style>
 </head>
 
 <body>
