@@ -265,6 +265,13 @@
                 max-width: 100%; /* Make it responsive on mobile */
             }
         }
+        
+        /* Additional Styling for Larger Screens (e.g., laptops/desktops) */
+        @media (min-width: 1024px) {
+            .image-slider {
+                max-width: 600px; /* Limit the max-width on larger screens */
+            }
+        }
     </style>
 </head>
 
@@ -500,6 +507,7 @@
             setInterval(nextSlide, 3000); // Change image every 3 seconds
         }
         
+        // Initialize Slider and Dots
         createDots(); // Create the dots based on the number of slides
         startSlider(); // Start the automatic slider when the page loads
     </script>
