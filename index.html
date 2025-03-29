@@ -222,13 +222,35 @@
             height: auto;
             display: none; /* Hide all images initially */
             object-fit: cover;
+            transition: all 0.3s ease-in-out;
         }
         
         .image-slider .active {
             display: block; /* Show only the active image */
         }
         
-        /* Responsive styling */
+        /* Navigation Dots Styling */
+        .slider-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .slider-dots span {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .slider-dots .active-dot {
+            background-color: #0077b5;
+        }
+        
+        /* Image Slider responsive styling */
         @media (max-width: 768px) {
             .image-slider {
                 max-width: 100%; /* Make it responsive on mobile */
@@ -299,6 +321,10 @@
                 <img src="manuals5.png" alt="Slide 9" class="slide" />
                 <img src="manuals6.png" alt="Slide 10" class="slide" />
                 <img src="manuals7.png" alt="Slide 11" class="slide" />
+            </div>
+            <!-- Navigation Dots -->
+            <div class="slider-dots">
+                <!-- Dynamically generated dots will go here -->
             </div>
         </section>
 
@@ -420,10 +446,12 @@
             navbar.classList.toggle('nav-active');
         });
 
-        // Image Slider functionality
+        // Image Slider functionality with Manual Controls (dots)
         let currentIndex = 0;
         const slides = document.querySelectorAll('.image-slider .slide');
+        const dotsContainer = document.querySelector('.slider-dots');
         
+        // Function to display the current slide
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
@@ -431,8 +459,28 @@
                     slide.classList.add('active');
                 }
             });
+        
+            // Update the active dot
+            const dots = document.querySelectorAll('.slider-dots span');
+            dots.forEach(dot => {
+                dot.classList.remove('active-dot');
+            });
+            dots[index].classList.add('active-dot');
         }
         
+        // Create dots for each slide
+        function createDots() {
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    showSlide(currentIndex);
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+        
+        // Automatic slide change
         function nextSlide() {
             currentIndex = (currentIndex + 1) % slides.length; // Loop back to the first slide after the last one
             showSlide(currentIndex);
@@ -443,6 +491,7 @@
             setInterval(nextSlide, 3000); // Change image every 3 seconds
         }
         
+        createDots(); // Create the dots based on the number of slides
         startSlider(); // Start the automatic slider when the page loads
     </script>
 
